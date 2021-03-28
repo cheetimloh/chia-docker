@@ -8,7 +8,7 @@ if [[ ${keys} == "generate" ]]; then
   echo "to use your own keys pass them as a variable -e keys=\"24words\""
   chia keys generate
 else
-  echo "${keys}" | chia keys add -
+  echo "${keys}" | chia keys add
 fi
 
 if [[ ! "$(ls -A /plots)" ]]; then
@@ -17,7 +17,7 @@ fi
 
 chia plots add -d ${plots_dir}
 
-sed -i 's/localhost/127.0.0.1/g' ~/.chia/mainnet/config/config.yaml
+sed -i 's/localhost/127.0.0.1/g' "${CHIA_ROOT}"/config/config.yaml
 
 if [[ ${farmer} == 'true' ]]; then
   chia start farmer-only
